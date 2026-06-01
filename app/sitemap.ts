@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = "https://akkapol-portfolio-2026.vercel.app";
+const siteUrl = "https://akkapol-systems-ak3lab.vercel.app";
 const lastModified = new Date("2026-06-01");
 
 export default function sitemap(): MetadataRoute.Sitemap {

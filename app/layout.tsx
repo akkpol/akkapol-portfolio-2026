@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const siteUrl = new URL("https://akkapol-portfolio-2026.vercel.app");
+const siteUrl = new URL("https://akkapol-systems-ak3lab.vercel.app");
 const siteTitle = "Akkapol Kumpapug | AI Systems Builder";
 const siteDescription =
   "Portfolio for Akkapol Kumpapug, an AI systems builder focused on workflow design, operational automation, and production-ready web systems.";
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Akkapol Kumpapug",
   },
   description: siteDescription,
-  applicationName: "Akkapol Portfolio",
+  applicationName: "Akkapol Systems",
   authors: [{ name: "Akkapol Kumpapug", url: siteUrl }],
   creator: "Akkapol Kumpapug",
   alternates: {
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/",
-    siteName: "Akkapol Portfolio",
+    siteName: "Akkapol Systems",
     title: siteTitle,
     description: siteDescription,
     images: [
