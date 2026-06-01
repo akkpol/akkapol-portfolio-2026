@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
-import { motion, useScroll } from "framer-motion";
+import { motion, useReducedMotion, useScroll } from "framer-motion";
 
 import { CvShareActions } from "@/app/_components/CvShareActions";
 import { cv, cvMarkdown } from "@/app/_data/cv";
@@ -10,7 +10,7 @@ import type { IconName } from "@/app/_data/cv";
 
 const profile = cv.profile;
 
-const profileHeroImage = "/images/akkapol-profile.png";
+const profileHeroImage = "/images/akkapol-profile-2026.png";
 const currentFocus = cv.currentFocus;
 const strengths = cv.strengths;
 
@@ -63,6 +63,21 @@ const education = cv.education;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const heroSequence = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const revealItem = {
+  hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0 },
 };
 
@@ -201,7 +216,7 @@ function Icon({ name, className = "h-5 w-5" }: { name: IconName; className?: str
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm text-zinc-200 shadow-sm backdrop-blur">
+    <span className="inline-flex items-center border border-amber-300/18 bg-amber-300/[0.055] px-3.5 py-2 text-sm text-zinc-200 shadow-sm backdrop-blur">
       {children}
     </span>
   );
@@ -234,24 +249,80 @@ function ScrollProgress() {
 
 function HeroProfileCard() {
   return (
-    <div className="relative overflow-hidden rounded-lg border border-white/10 bg-zinc-950 shadow-2xl shadow-black/50">
-      <div className="absolute left-6 top-6 z-20 border border-white/10 bg-black/45 px-3 py-2 text-xs font-semibold text-zinc-200 backdrop-blur">
-        Profile
+    <div className="relative overflow-hidden border border-amber-300/22 bg-zinc-950 shadow-2xl shadow-black/50">
+      <div className="absolute left-5 top-5 z-20 border border-amber-300/25 bg-black/55 px-3 py-2 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-amber-200 backdrop-blur">
+        Systems online
+      </div>
+      <div className="absolute right-5 top-5 z-20 hidden text-right font-mono text-[0.68rem] uppercase tracking-[0.16em] text-zinc-500 sm:block">
+        <p>Role</p>
+        <p className="mt-2 max-w-32 text-zinc-200">{profile.role}</p>
       </div>
       <div className="relative aspect-[4/5] w-full">
         <Image
           src={profileHeroImage}
-          alt="Akkapol Kumpapug profile visual"
+          alt="Akkapol Kumpapug profile portrait in dark amber system style"
           fill
           preload
           sizes="(min-width: 768px) 45vw, 100vw"
-          className="object-cover object-center"
+          className="object-cover object-[50%_34%]"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,transparent,rgba(0,0,0,0.08)_42%,rgba(0,0,0,0.64)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_28%,transparent,rgba(0,0,0,0.06)_36%,rgba(0,0,0,0.5)_100%)]" />
+        <div className="absolute inset-0 ring-1 ring-inset ring-amber-300/10" />
       </div>
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/55 to-transparent p-8 pt-28">
-        <p className="text-2xl font-semibold text-white">{profile.name}</p>
-        <p className="mt-1 text-sm text-zinc-300">{profile.role}</p>
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/60 to-transparent p-5 pt-24">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-amber-200">
+          {profile.name}
+        </p>
+        <p className="mt-2 text-sm text-zinc-300">
+          Automation · Integration · Intelligence
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function SystemRadar() {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <motion.div
+        aria-hidden="true"
+        className="absolute left-[12%] top-[18%] h-64 w-64 rounded-full border border-amber-300/15"
+        animate={shouldReduceMotion ? undefined : { rotate: 360 }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+      >
+        <span className="absolute left-1/2 top-0 h-16 w-px bg-amber-300/45" />
+        <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-300" />
+      </motion.div>
+      <div className="absolute inset-x-8 bottom-28 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-transparent" />
+      <div className="absolute bottom-16 right-8 h-24 w-px bg-gradient-to-b from-transparent via-amber-300/35 to-transparent" />
+    </div>
+  );
+}
+
+function HeroWorkflowStrip() {
+  return (
+    <div className="relative overflow-hidden border border-amber-300/18 bg-black/35 p-4 shadow-2xl shadow-black/30 backdrop-blur">
+      <div className="mb-4 flex items-center justify-between font-mono text-[0.68rem] uppercase tracking-[0.2em] text-amber-200">
+        <span>Systems workflow</span>
+        <span>State guarded</span>
+      </div>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {workflowStages.map((stage, index) => (
+          <motion.div
+            key={stage.id}
+            variants={revealItem}
+            className="relative border border-white/10 bg-white/[0.035] p-3"
+          >
+            {index < workflowStages.length - 1 ? (
+              <span className="absolute -right-3 top-1/2 hidden h-px w-3 bg-amber-300/50 sm:block" />
+            ) : null}
+            <p className="font-mono text-xs text-amber-200">{stage.step}</p>
+            <p className="mt-2 text-sm font-semibold text-white">{stage.label}</p>
+            <p className="mt-1 line-clamp-2 text-xs leading-5 text-zinc-500">{stage.title}</p>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
@@ -275,12 +346,18 @@ function WorkflowPreview() {
               onClick={() => setActiveId(stage.id)}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className={`border p-4 text-left transition ${
+              className={`relative overflow-hidden border p-4 text-left transition ${
                 selected
-                  ? "border-amber-300/50 bg-amber-300/12 text-white"
-                  : "border-white/10 bg-white/[0.04] text-zinc-300 hover:border-white/20 hover:bg-white/[0.07]"
-              } rounded-lg`}
+                  ? "border-amber-300/55 bg-amber-300/[0.11] text-white"
+                  : "border-white/10 bg-white/[0.035] text-zinc-300 hover:border-amber-300/25 hover:bg-white/[0.06]"
+              }`}
             >
+              {selected ? (
+                <motion.span
+                  layoutId="active-workflow-stage"
+                  className="absolute inset-y-0 left-0 w-1 bg-amber-300"
+                />
+              ) : null}
               <span className="text-xs font-semibold text-amber-200">{stage.step}</span>
               <span className="ml-3 text-sm font-semibold">{stage.label}</span>
               <p className="mt-2 text-sm leading-6 text-zinc-400">{stage.title}</p>
@@ -289,7 +366,7 @@ function WorkflowPreview() {
         })}
       </div>
 
-      <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.045] p-6 shadow-2xl shadow-black/25 backdrop-blur md:p-8">
+      <div className="relative overflow-hidden border border-amber-300/18 bg-white/[0.045] p-6 shadow-2xl shadow-black/25 backdrop-blur md:p-8">
         <div className="absolute inset-x-8 top-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent" />
         <motion.div
           key={activeStage.id}
@@ -331,33 +408,37 @@ export default function AkkapolPortfolioPage() {
     <main className="min-h-screen overflow-hidden bg-[#070707] text-zinc-100">
       <ScrollProgress />
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,191,36,0.14),transparent_38%),linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:100%_100%,72px_72px,72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_78%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,191,36,0.12),transparent_35%),linear-gradient(to_right,rgba(251,191,36,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(251,191,36,0.04)_1px,transparent_1px)] bg-[size:100%_100%,72px_72px,72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_80%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-amber-300/50" />
       </div>
 
-      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-10">
-        <a href="#top" className="text-sm font-semibold uppercase text-white">
+      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
+        <a
+          href="#top"
+          className="font-mono text-sm font-semibold uppercase tracking-[0.22em] text-white"
+        >
           AKKAPOL
         </a>
-        <nav className="hidden items-center gap-8 text-sm text-zinc-300 md:flex">
-          <a className="transition hover:text-white" href="#about">
+        <nav className="hidden items-center gap-7 font-mono text-xs uppercase tracking-[0.16em] text-zinc-400 md:flex">
+          <a className="transition hover:text-amber-200" href="#about">
             About
           </a>
-          <a className="transition hover:text-white" href="#focus">
+          <a className="transition hover:text-amber-200" href="#focus">
             Focus
           </a>
-          <a className="transition hover:text-white" href="#skills">
+          <a className="transition hover:text-amber-200" href="#skills">
             Skills
           </a>
-          <a className="transition hover:text-white" href="#systems">
+          <a className="transition hover:text-amber-200" href="#systems">
             Systems
           </a>
-          <a className="transition hover:text-white" href="#experience">
+          <a className="transition hover:text-amber-200" href="#experience">
             Experience
           </a>
-          <a className="transition hover:text-white" href="#education">
+          <a className="transition hover:text-amber-200" href="#education">
             Education
           </a>
-          <a className="transition hover:text-white" href="#contact">
+          <a className="transition hover:text-amber-200" href="#contact">
             Contact
           </a>
         </nav>
@@ -365,34 +446,40 @@ export default function AkkapolPortfolioPage() {
 
       <section
         id="top"
-        className="relative z-10 mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-8 md:grid-cols-[1.05fr_0.95fr] md:px-10 md:pb-28 md:pt-20"
+        className="relative z-10 mx-auto grid min-h-[calc(100svh-64px)] max-w-7xl gap-7 px-6 pb-8 pt-4 md:grid-cols-[1.02fr_0.98fr] md:px-10 lg:gap-8"
       >
         <motion.div
-          variants={fadeUp}
+          variants={heroSequence}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="flex flex-col justify-center"
+          className="flex flex-col justify-start pt-6 md:pt-10"
         >
-          <Badge>
-            <Icon name="sparkles" className="mr-2 inline h-4 w-4 text-amber-300" />
-            {profile.tagline}
-          </Badge>
+          <motion.h1
+            variants={revealItem}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="max-w-4xl text-[4rem] font-black uppercase leading-[0.78] text-white sm:text-[7.2rem] md:text-[8.4rem] lg:text-[9.2rem]"
+          >
+            AKKAPOL
+            <span className="mt-5 block max-w-3xl text-3xl font-semibold normal-case leading-tight text-zinc-100 sm:text-4xl md:text-5xl">
+              <span className="text-amber-300">AI-integrated</span> systems builder
+              for business workflows that actually ship.
+            </span>
+          </motion.h1>
 
-          <h1 className="mt-8 max-w-4xl text-5xl font-semibold leading-[0.95] text-white md:text-7xl lg:text-8xl">
-            AI-integrated systems builder for business workflows that actually ship.
-          </h1>
-
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300 md:text-xl">
+          <motion.p
+            variants={revealItem}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="mt-5 max-w-2xl text-base leading-8 text-zinc-300 md:text-lg"
+          >
             I design practical AI-assisted business systems that combine LLM tooling,
             agentic development workflows, cloud infrastructure, CRM-style operations,
             customer intake, quotation/status tracking, and production-ready web systems.
-          </p>
+          </motion.p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+          <motion.div variants={revealItem} className="mt-7 flex flex-col gap-4 sm:flex-row">
             <a
               href={`mailto:${profile.email}`}
-              className="group inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-amber-200"
+              className="group inline-flex min-h-12 items-center justify-center border border-amber-300 bg-amber-300 px-6 py-3 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-zinc-950 shadow-[0_0_34px_rgba(251,191,36,0.18)] transition hover:bg-amber-200"
             >
               Work with me
               <Icon
@@ -402,30 +489,46 @@ export default function AkkapolPortfolioPage() {
             </a>
             <a
               href="#systems"
-              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/[0.08]"
+              className="inline-flex min-h-12 items-center justify-center border border-amber-300/22 bg-white/[0.035] px-6 py-3 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-amber-100 backdrop-blur transition hover:border-amber-300/45 hover:bg-amber-300/[0.08]"
             >
               Explore systems
             </a>
-          </div>
+          </motion.div>
 
-          <div className="mt-5">
-            <CvShareActions markdown={cvMarkdown} />
-          </div>
+        </motion.div>
 
-          <div className="mt-10 flex flex-wrap gap-3">
+        <motion.div
+          variants={fadeUp}
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+          className="relative flex min-h-[560px] flex-col justify-center gap-4"
+        >
+          <SystemRadar />
+          <HeroProfileCard />
+          <motion.div
+            variants={heroSequence}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.3 }}
+          >
+            <HeroWorkflowStrip />
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          variants={revealItem}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+          className="grid gap-5 md:col-span-2 lg:grid-cols-[auto_1fr] lg:items-start"
+        >
+          <CvShareActions markdown={cvMarkdown} />
+          <div className="flex flex-wrap gap-3">
             {strengths.map((item) => (
               <Badge key={item.title}>{item.title}</Badge>
             ))}
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-          className="relative"
-        >
-          <HeroProfileCard />
         </motion.div>
       </section>
 
