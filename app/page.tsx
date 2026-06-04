@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type React from "react";
-
 import { CvShareActions } from "@/app/_components/CvShareActions";
 import {
   ScrollProgress,
@@ -12,7 +11,6 @@ import { cv, cvMarkdown } from "@/app/_data/cv";
 import type { IconName } from "@/app/_data/cv";
 
 const profile = cv.profile;
-
 const profileHeroImage = "/images/akkapol-profile-2026.png";
 const currentFocus = cv.currentFocus;
 const strengths = cv.strengths;
@@ -24,7 +22,7 @@ const workflowStages = [
     label: "Intake",
     title: "Capture the real request",
     description:
-      "LINE/LIFF intake turns messy customer input into a structured case with files, context, and ownership.",
+      "Customer intake turns messy input into a structured case with files, context, and ownership.",
     event: "customer_intake.submitted",
     guard: "Schema validation + signed asset URLs",
   },
@@ -32,9 +30,9 @@ const workflowStages = [
     id: "triage",
     step: "02",
     label: "AI Triage",
-    title: "Reduce ambiguity before work starts",
+    title: "Reduce ambiguity before execution starts",
     description:
-      "AI assistance classifies intent, missing details, urgency, and quotation readiness without becoming the source of truth.",
+      "AI helps classify intent, missing details, urgency, and quote readiness while keeping people in control.",
     event: "case.triage.completed",
     guard: "Human review + confidence threshold",
   },
@@ -42,9 +40,9 @@ const workflowStages = [
     id: "quote",
     step: "03",
     label: "Quote",
-    title: "Move through explicit commercial states",
+    title: "Move through clear operational states",
     description:
-      "Quote, payment, and approval gates become visible states instead of private chat history or spreadsheet drift.",
+      "Quotes, payments, and approvals are turned into clear system states instead of scattered chats or spreadsheets.",
     event: "quote.status.changed",
     guard: "Idempotent transition keys",
   },
@@ -294,6 +292,7 @@ export default function AkkapolPortfolioPage() {
         >
           AKKAPOL
         </a>
+
         <nav className="hidden items-center gap-7 font-mono text-xs uppercase tracking-[0.16em] text-zinc-400 md:flex">
           <a className="transition hover:text-amber-200" href="#about">
             About
@@ -330,16 +329,15 @@ export default function AkkapolPortfolioPage() {
             AKKAPOL
             <span className="mt-5 block max-w-3xl text-3xl font-semibold normal-case leading-tight text-zinc-100 sm:text-4xl md:text-5xl">
               <span className="text-amber-300">AI-integrated</span> systems builder
-              for business workflows that actually ship.
+              focused on solving real business problems with systems that actually get used.
             </span>
           </h1>
 
           <p
             className="mt-5 max-w-2xl text-base leading-8 text-zinc-300 md:text-lg"
           >
-            I design practical AI-assisted business systems that combine LLM tooling,
-            agentic development workflows, cloud infrastructure, CRM-style operations,
-            customer intake, quotation/status tracking, and production-ready web systems.
+            I design practical AI-assisted business systems that focus on solving real operational problems —
+            turning messy workflows into clear, working solutions using automation, LLM tools, and production-ready systems.
           </p>
 
           <div className="mt-7 flex flex-col gap-4 sm:flex-row">
@@ -360,7 +358,6 @@ export default function AkkapolPortfolioPage() {
               Explore systems
             </a>
           </div>
-
         </div>
 
         <div
@@ -389,7 +386,7 @@ export default function AkkapolPortfolioPage() {
         <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
           <SectionTitle
             eyebrow="Executive Summary"
-            title="Full-stack execution, AI workflow design, and operational problem solving in one profile."
+            title="A profile that combines full-stack execution, AI workflow design, and real operational problem solving."
           />
           <div className="rounded-lg border border-white/10 bg-white/[0.04] p-8 text-lg leading-9 text-zinc-300 shadow-2xl shadow-black/20 backdrop-blur">
             <p>{cv.summary}</p>
@@ -438,7 +435,7 @@ export default function AkkapolPortfolioPage() {
       <section id="systems" className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:px-10">
         <SectionTitle
           eyebrow="System Operating Model"
-          title="The portfolio should feel like the systems I build: explicit states, clear events, and durable handoffs."
+          title="The portfolio should reflect the systems I build: clear states, clear events, and reliable handoffs."
         />
         <WorkflowPreview stages={workflowStages} />
       </section>
@@ -449,7 +446,7 @@ export default function AkkapolPortfolioPage() {
       >
         <SectionTitle
           eyebrow="Experience"
-          title="Current role first: AI systems, workflow platforms, and practical implementation."
+          title="Current role first: AI systems, workflow design, and practical implementation."
         />
         <div className="space-y-4">
           {experience.map((job) => (
@@ -509,17 +506,17 @@ export default function AkkapolPortfolioPage() {
             <div>
               <Icon name="brain" className="mb-6 h-10 w-10 text-amber-200" />
               <h2 className="text-4xl font-semibold text-white md:text-6xl">
-                Let&apos;s turn business ambiguity into a working AI-integrated system.
+                Let&apos;s turn business complexity into a working AI-assisted system.
               </h2>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
-                Best fit: AI-assisted operational systems, LINE/LIFF intake flows,
-                workflow automation, CRM-style quote/status tracking, and production-ready web
-                platforms.
+                Best fit: AI-assisted operational systems, customer intake flows,
+                workflow automation, and production-ready web platforms.
               </p>
               <div className="mt-8">
                 <CvShareActions markdown={cvMarkdown} variant="contact" />
               </div>
             </div>
+
             <div className="flex flex-col justify-end gap-4 text-sm text-zinc-300">
               <a
                 href={`mailto:${profile.email}`}
