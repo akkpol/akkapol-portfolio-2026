@@ -54,7 +54,7 @@ export function HeroNameMotion({ children }: HeroNameMotionProps) {
 
   if (reduceMotion) {
     return (
-      <h1 className="ak-type-display-hero text-zinc-100" style={heroNameStyle}>
+      <h1 className="ak-type-display-hero ak-text-primary" style={heroNameStyle}>
         {children}
       </h1>
     );
@@ -62,7 +62,7 @@ export function HeroNameMotion({ children }: HeroNameMotionProps) {
 
   return (
     <motion.h1
-      className="ak-type-display-hero ak-hero-name-motion relative isolate text-zinc-100"
+      className="ak-type-display-hero ak-hero-name-motion ak-text-primary relative isolate"
       initial="rest"
       onPointerMove={(event) => {
         const bounds = event.currentTarget.getBoundingClientRect();

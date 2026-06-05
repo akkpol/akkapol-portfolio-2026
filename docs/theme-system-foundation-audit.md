@@ -117,6 +117,28 @@ Implemented after this audit:
 - Documented hero composition rules so the nav safe area, theme toggle, status label, portrait, and visual polish layers have clear ownership.
 - Removed duplicate hero position rules from `globals.css`; the current status-label and portrait offsets now live in `StudioHero.tsx` as the visible source of truth.
 
+## Foundation Pass 2 Progress
+
+Implemented after the first foundation pass:
+
+- Added semantic `ak-text-*` roles for primary, body, muted, subtle, accent, soft accent, and signal text.
+- Replaced homepage color-mode-specific text utility clusters with semantic roles.
+- Removed broad light-mode selectors that depended on matching Tailwind class-name fragments.
+- Added token-backed action colors and the reusable `SystemAction` primitive.
+- Refactored CV sharing and download actions to use the shared action contract.
+- Added visible keyboard focus treatment for action and contact controls.
+- Disabled scroll progress and hover movement when reduced motion is requested.
+
+This pass reduces hidden coupling between Tailwind class names and theme behavior. Dark and light modes can now change through semantic tokens without rewriting component markup.
+
+Validation:
+
+- `npm run lint` passed.
+- `npm run build` passed on Next.js 16.2.6.
+- Local dark and light desktop QA passed at `1280x720`.
+- Local mobile QA passed at `390x844` with no horizontal overflow.
+- `/cv` passed desktop and mobile smoke QA; its portrait asset loaded and no console warning/error was observed.
+
 Validation:
 
 - `npm run lint` passed.

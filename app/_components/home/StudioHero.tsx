@@ -13,7 +13,7 @@ function StudioMark() {
     <svg
       aria-hidden="true"
       viewBox="0 0 88 52"
-      className="h-8 w-14 text-zinc-100 md:h-9 md:w-16"
+      className="ak-text-primary h-8 w-14 md:h-9 md:w-16"
       fill="none"
     >
       <path d="M7 43 27 9h10L16 43H7Z" fill="currentColor" />
@@ -51,7 +51,7 @@ function HeroSystemMap() {
     >
       <svg
         viewBox="0 0 820 760"
-        className="absolute right-0 top-20 z-0 h-[74%] w-full text-amber-300/35 opacity-60"
+        className="ak-text-accent absolute right-0 top-20 z-0 h-[74%] w-full opacity-[0.35]"
         fill="none"
       >
         <defs>
@@ -139,26 +139,26 @@ function HeroSystemMap() {
       </svg>
 
       <div className="absolute left-[8%] top-[42%] z-10 max-w-28 text-right opacity-75">
-        <p className="ak-type-label text-cyan-100/60">CLARIFY</p>
-        <p className="mt-1 text-xs leading-4 text-zinc-600">Understand goals, constraints, context</p>
+        <p className="ak-type-label ak-text-signal opacity-60">CLARIFY</p>
+        <p className="ak-text-muted mt-1 text-xs leading-4">Understand goals, constraints, context</p>
       </div>
       <div className="absolute left-[10%] top-[55%] z-10 max-w-28 text-right opacity-70">
-        <p className="ak-type-label text-cyan-100/55">DESIGN</p>
-        <p className="mt-1 text-xs leading-4 text-zinc-600">Map systems and workflows</p>
+        <p className="ak-type-label ak-text-signal opacity-[0.55]">DESIGN</p>
+        <p className="ak-text-muted mt-1 text-xs leading-4">Map systems and workflows</p>
       </div>
       <div className="absolute right-[10%] top-[20%] z-10 max-w-48 border-l border-white/10 pl-4 opacity-80">
-        <p className="ak-type-label text-zinc-300">AMBIGUOUS INPUT</p>
-        <p className="mt-1 text-xs leading-4 text-zinc-600">Unclear, scattered, hard to scale</p>
+        <p className="ak-type-label ak-text-body">AMBIGUOUS INPUT</p>
+        <p className="ak-text-muted mt-1 text-xs leading-4">Unclear, scattered, hard to scale</p>
       </div>
       <div className="absolute right-[20%] top-[38%] z-10 max-w-40 opacity-75">
-        <p className="ak-type-label text-zinc-300">BUILD</p>
-        <p className="mt-1 text-xs leading-4 text-zinc-600">Create intelligent tools and automations</p>
+        <p className="ak-type-label ak-text-body">BUILD</p>
+        <p className="ak-text-muted mt-1 text-xs leading-4">Create intelligent tools and automations</p>
       </div>
       <div className="absolute right-[7%] top-[55%] z-10 max-w-36 opacity-70">
-        <p className="ak-type-label text-zinc-300">OPERATE</p>
-        <p className="mt-1 text-xs leading-4 text-zinc-600">Run, refine, and evolve systems</p>
+        <p className="ak-type-label ak-text-body">OPERATE</p>
+        <p className="ak-text-muted mt-1 text-xs leading-4">Run, refine, and evolve systems</p>
       </div>
-      <div className="absolute right-[2%] top-[47%] z-10 flex items-center gap-4 text-amber-300/85">
+      <div className="ak-text-accent absolute right-[2%] top-[47%] z-10 flex items-center gap-4 opacity-[0.85]">
         <span className="h-px w-10 bg-amber-300/55" />
         <ArrowUpRight className="h-5 w-5" />
         <p className="ak-type-label">
@@ -186,10 +186,10 @@ export function StudioHero({ email }: { email: string }) {
       <HeroSystemMap />
 
       <header className="relative z-30 flex items-start justify-between gap-5">
-        <Link href="#top" className={`group flex items-center gap-5 text-zinc-100 ${ctaFocus}`}>
+        <Link href="#top" className={`ak-text-primary group flex items-center gap-5 ${ctaFocus}`}>
           <StudioMark />
           <span className="h-8 w-px bg-white/18" aria-hidden="true" />
-          <span className="ak-type-label flex items-center gap-4 text-zinc-400 transition group-hover:text-zinc-200">
+          <span className="ak-type-label ak-text-muted flex items-center gap-4 transition group-hover:text-[var(--ak-color-fg)]">
             <span className="h-2 w-2 rounded-full bg-amber-300 shadow-[0_0_18px_rgba(246,181,30,0.45)]" aria-hidden="true" />
             SYSTEMS STUDIO
           </span>
@@ -199,7 +199,7 @@ export function StudioHero({ email }: { email: string }) {
           <ThemeModeToggle />
           <div className="ak-hero-status-card relative mt-14 hidden min-w-[25rem] border-t border-r border-white/16 px-8 py-4 text-right xl:mt-16 lg:block">
             <span className="absolute -left-1.5 top-3 h-2 w-2 rounded-full bg-amber-300" />
-            <p className="ak-type-label text-zinc-500">SYSTEMS THINKER • BUILDER • OPERATOR</p>
+            <p className="ak-type-label ak-text-muted">SYSTEMS THINKER • BUILDER • OPERATOR</p>
           </div>
         </div>
       </header>
@@ -211,15 +211,15 @@ export function StudioHero({ email }: { email: string }) {
             <span className="block">KUMPAPUG</span>
           </HeroNameMotion>
 
-          <div className="mt-6 flex max-w-[23rem] items-center gap-3 text-amber-300">
+          <div className="ak-text-accent mt-6 flex max-w-[23rem] items-center gap-3">
             <span className="h-px flex-1 bg-amber-300" aria-hidden="true" />
             <span className="h-3 w-3 rounded-full border border-amber-300 bg-[#070707] shadow-[0_0_18px_rgba(246,181,30,0.25)]" />
           </div>
 
-          <p className="ak-type-title-hero mt-5 text-amber-300">
+          <p className="ak-type-title-hero ak-text-accent mt-5">
             Creative AI Systems Builder
           </p>
-          <p className="ak-type-body-hero mt-5 max-w-full text-zinc-300">
+          <p className="ak-type-body-hero ak-text-body mt-5 max-w-full">
             Systems, workflows, and intelligent tools
             <br className="hidden sm:block" /> for real business operations
           </p>
@@ -244,7 +244,7 @@ export function StudioHero({ email }: { email: string }) {
 
           <div
             aria-hidden="true"
-            className="ak-scroll-cue mt-9 hidden h-10 items-center gap-4 text-amber-300/75 sm:flex"
+            className="ak-scroll-cue ak-text-accent mt-9 hidden h-10 items-center gap-4 opacity-75 sm:flex"
           >
             <span className="relative h-10 w-px overflow-hidden bg-white/12">
               <span className="ak-scroll-cue-marker absolute left-0 top-0 h-4 w-px bg-amber-300" />
@@ -279,15 +279,15 @@ export function StudioHero({ email }: { email: string }) {
         <div className="relative mx-auto grid w-full max-w-[92rem] gap-8 md:grid-cols-[0.43fr_0.31fr_0.26fr] md:items-end">
           <div>
             <div className="mb-7 flex items-center gap-4">
-              <p className="ak-type-label text-amber-300">WHAT I DO</p>
+              <p className="ak-type-label ak-text-accent">WHAT I DO</p>
               <span className="h-px flex-1 bg-white/18" />
             </div>
-            <h2 className="ak-type-title-panel text-zinc-100">
+            <h2 className="ak-type-title-panel ak-text-primary">
               I build systems that
               <span className="block">run your business.</span>
             </h2>
           </div>
-          <p className="ak-type-body w-full max-w-[22rem] text-zinc-400 [overflow-wrap:anywhere] md:col-start-2 md:max-w-md">
+          <p className="ak-type-body ak-text-muted w-full max-w-[22rem] [overflow-wrap:anywhere] md:col-start-2 md:max-w-md">
             I partner with founders and operators to turn ambiguity into structure,
             designing and building systems that streamline operations and scale with
             confidence.

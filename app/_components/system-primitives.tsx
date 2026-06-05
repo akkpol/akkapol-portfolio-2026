@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { AriaAttributes, MouseEventHandler, ReactNode } from "react";
 
 type SectionHeadingProps = {
   eyebrow: string;
@@ -18,11 +18,22 @@ type ContactRowProps = {
   target?: "_blank";
 };
 
+type SystemActionProps = {
+  "aria-live"?: AriaAttributes["aria-live"];
+  children: ReactNode;
+  className?: string;
+  download?: boolean | string;
+  href?: string;
+  intent?: "primary" | "secondary";
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  type?: "button" | "submit";
+};
+
 export function SectionHeading({ eyebrow, title }: SectionHeadingProps) {
   return (
     <div className="mb-8">
-      <p className="ak-type-label mb-3 text-amber-300/80">{eyebrow}</p>
-      <h2 className="ak-type-title-section-long max-w-3xl text-white">{title}</h2>
+      <p className="ak-type-label ak-text-accent mb-3 opacity-80">{eyebrow}</p>
+      <h2 className="ak-type-title-section-long ak-text-primary max-w-3xl">{title}</h2>
     </div>
   );
 }
@@ -57,4 +68,36 @@ export function ContactRow({ children, href, target }: ContactRowProps) {
   }
 
   return <div className="ak-contact-row">{children}</div>;
+}
+
+export function SystemAction({
+  "aria-live": ariaLive,
+  children,
+  className = "",
+  download,
+  href,
+  intent = "secondary",
+  onClick,
+  type = "button",
+}: SystemActionProps) {
+  const actionClassName = `ak-action ak-action-${intent} ${className}`.trim();
+
+  if (href) {
+    return (
+      <a href={href} download={download} className={actionClassName}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      className={actionClassName}
+      aria-live={ariaLive}
+    >
+      {children}
+    </button>
+  );
 }

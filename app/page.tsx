@@ -204,8 +204,8 @@ export default function AkkapolPortfolioPage() {
               <div className="ak-signal-icon mb-6">
                 <Icon name={skill.icon} className="h-6 w-6" />
               </div>
-              <h3 className="ak-type-title-card text-white">{skill.title}</h3>
-              <p className="ak-type-body-sm mt-3 text-zinc-400">{skill.items}</p>
+              <h3 className="ak-type-title-card ak-text-primary">{skill.title}</h3>
+              <p className="ak-type-body-sm ak-text-muted mt-3">{skill.items}</p>
             </Surface>
           ))}
         </div>
@@ -227,13 +227,13 @@ export default function AkkapolPortfolioPage() {
               variant="roomy"
             >
               <div>
-                <p className="ak-type-body-sm font-medium text-amber-200">{job.period}</p>
-                <h3 className="ak-type-title-card mt-3 text-white">
+                <p className="ak-type-body-sm ak-text-accent-soft font-medium">{job.period}</p>
+                <h3 className="ak-type-title-card ak-text-primary mt-3">
                   {job.title}
                 </h3>
-                <p className="ak-type-body-sm mt-2 text-zinc-400">{job.company}</p>
+                <p className="ak-type-body-sm ak-text-muted mt-2">{job.company}</p>
               </div>
-              <ul className="ak-type-body space-y-3 text-zinc-300">
+              <ul className="ak-type-body ak-text-body space-y-3">
                 {job.points.map((point) => (
                   <li key={point} className="flex gap-3">
                     <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-300" />
@@ -261,12 +261,12 @@ export default function AkkapolPortfolioPage() {
               key={`${item.program}-${item.period}`}
               className="ak-type-body-sm p-5"
             >
-              <p className="font-semibold text-white">{item.program}</p>
-              <p className="mt-1 text-zinc-400">
+              <p className="ak-text-primary font-semibold">{item.program}</p>
+              <p className="ak-text-muted mt-1">
                 {item.institution} · {item.period}
               </p>
               {item.description ? (
-                <p className="mt-3 text-zinc-400">{item.description}</p>
+                <p className="ak-text-muted mt-3">{item.description}</p>
               ) : null}
             </Surface>
           ))}
@@ -280,34 +280,34 @@ export default function AkkapolPortfolioPage() {
         <Surface className="ak-surface-strong overflow-hidden md:p-12" variant="roomy">
           <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr]">
             <div>
-              <Icon name="brain" className="mb-6 h-10 w-10 text-amber-200" />
-              <h2 className="ak-type-title-section-long text-white">
+              <Icon name="brain" className="ak-text-accent-soft mb-6 h-10 w-10" />
+              <h2 className="ak-type-title-section-long ak-text-primary">
                 Let&apos;s turn business problems into practical AI-assisted systems.
               </h2>
-              <p className="ak-type-body-lg mt-6 max-w-2xl text-zinc-300">
+              <p className="ak-type-body-lg ak-text-body mt-6 max-w-2xl">
                 Best fit: practical AI-assisted systems, customer workflows,
                 process automation, and production-ready web platforms.
               </p>
               <div className="mt-8">
-                <CvShareActions markdown={cvMarkdown} variant="contact" />
+                <CvShareActions markdown={cvMarkdown} />
               </div>
             </div>
 
-            <div className="ak-type-body-sm flex flex-col justify-end gap-4 text-zinc-300">
+            <div className="ak-type-body-sm ak-text-body flex flex-col justify-end gap-4">
               <ContactRow href={`mailto:${profile.email}`}>
-                <Icon name="mail" className="h-5 w-5 text-amber-200" /> {profile.email}
+                <Icon name="mail" className="ak-text-accent-soft h-5 w-5" /> {profile.email}
               </ContactRow>
               <ContactRow href={`tel:${profile.phone.replace(/\s+/g, "")}`}>
-                <Icon name="phone" className="h-5 w-5 text-amber-200" /> {profile.phone}
+                <Icon name="phone" className="ak-text-accent-soft h-5 w-5" /> {profile.phone}
               </ContactRow>
               <ContactRow href={`https://${profile.linkedin}`} target="_blank">
-                <Icon name="arrow" className="h-5 w-5 text-amber-200" /> {profile.linkedin}
+                <Icon name="arrow" className="ak-text-accent-soft h-5 w-5" /> {profile.linkedin}
               </ContactRow>
               <ContactRow href={`https://${profile.portfolio}`} target="_blank">
-                <Icon name="arrow" className="h-5 w-5 text-amber-200" /> {profile.portfolio}
+                <Icon name="arrow" className="ak-text-accent-soft h-5 w-5" /> {profile.portfolio}
               </ContactRow>
               <ContactRow>
-                <Icon name="map" className="h-5 w-5 text-amber-200" /> {profile.location}
+                <Icon name="map" className="ak-text-accent-soft h-5 w-5" /> {profile.location}
               </ContactRow>
             </div>
           </div>

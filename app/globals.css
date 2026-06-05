@@ -14,6 +14,9 @@ html[data-theme="dark"],
   --ak-color-surface-text: #d4d4d8;
   --ak-color-secondary-text: #e4e4e7;
   --ak-color-contact-hover-text: #ffffff;
+  --ak-color-action-primary-bg: #ffffff;
+  --ak-color-action-primary-fg: #09090b;
+  --ak-color-action-primary-hover: #fde68a;
   --ak-color-white: #ffffff;
   --ak-color-ink: #09090b;
   --ak-color-accent: #f6b51e;
@@ -76,6 +79,9 @@ html[data-theme="light"],
   --ak-color-surface-text: #3f3f46;
   --ak-color-secondary-text: #18181b;
   --ak-color-contact-hover-text: #18181b;
+  --ak-color-action-primary-bg: #18181b;
+  --ak-color-action-primary-fg: #ffffff;
+  --ak-color-action-primary-hover: #ad7a00;
   --ak-color-white: #ffffff;
   --ak-color-ink: #09090b;
   --ak-color-accent: #ad7a00;
@@ -213,11 +219,49 @@ html {
     0 0 0 4px var(--ak-color-bg);
 }
 
+.ak-text-primary {
+  color: var(--ak-color-fg);
+}
+
+.ak-text-body {
+  color: var(--ak-color-surface-text);
+}
+
+.ak-text-muted {
+  color: var(--ak-color-muted);
+}
+
+.ak-text-subtle {
+  color: var(--ak-color-subtle);
+}
+
+.ak-text-accent {
+  color: var(--ak-color-accent);
+}
+
+.ak-text-accent-soft {
+  color: var(--ak-color-accent-soft);
+}
+
+.ak-text-signal {
+  color: var(--ak-color-signal);
+}
+
 .ak-theme-shell {
   min-height: 100vh;
   overflow: hidden;
   background: var(--ak-color-bg);
   color: var(--ak-color-fg);
+}
+
+.ak-scroll-progress {
+  background: linear-gradient(
+    90deg,
+    var(--ak-color-accent-soft),
+    var(--ak-color-accent),
+    var(--ak-color-signal)
+  );
+  box-shadow: 0 0 18px color-mix(in srgb, var(--ak-color-accent) 35%, transparent);
 }
 
 .ak-studio-hero {
@@ -387,6 +431,67 @@ html {
   color: var(--ak-color-contact-hover-text);
 }
 
+.ak-contact-row:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--ak-color-accent-soft),
+    0 0 0 4px var(--ak-color-bg);
+}
+
+.ak-action {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ak-space-2);
+  border-radius: 999px;
+  padding: var(--ak-space-3) var(--ak-space-5);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  transition:
+    transform var(--ak-duration-base) var(--ak-ease-premium),
+    background var(--ak-duration-base) var(--ak-ease-premium),
+    border-color var(--ak-duration-base) var(--ak-ease-premium),
+    color var(--ak-duration-base) var(--ak-ease-premium);
+}
+
+.ak-action:hover {
+  transform: translate3d(0, -0.125rem, 0);
+}
+
+.ak-action:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--ak-color-accent-soft),
+    0 0 0 4px var(--ak-color-bg);
+}
+
+.ak-action-primary {
+  border: 1px solid var(--ak-color-action-primary-bg);
+  background: var(--ak-color-action-primary-bg);
+  color: var(--ak-color-action-primary-fg);
+}
+
+.ak-action-primary:hover {
+  border-color: var(--ak-color-action-primary-hover);
+  background: var(--ak-color-action-primary-hover);
+  color: var(--ak-color-ink);
+}
+
+.ak-action-secondary {
+  border: 1px solid var(--ak-border-subtle);
+  background: var(--ak-surface-secondary);
+  color: var(--ak-color-secondary-text);
+  backdrop-filter: blur(12px);
+}
+
+.ak-action-secondary:hover {
+  border-color: var(--ak-border-secondary-hover);
+  background: var(--ak-surface-secondary-hover);
+  color: var(--ak-color-contact-hover-text);
+}
+
 .ak-signal-icon {
   display: flex;
   height: var(--ak-space-12);
@@ -457,27 +562,10 @@ html {
   transform: translate3d(0.125rem, -0.125rem, 0);
 }
 
-html[data-theme="light"] .ak-theme-shell :where(.text-white, [class*="text-zinc-100"], [class*="text-zinc-200"]) {
-  color: var(--ak-color-fg);
-}
-
-html[data-theme="light"] .ak-theme-shell :where([class*="text-zinc-300"]) {
-  color: var(--ak-color-surface-text);
-}
-
-html[data-theme="light"] .ak-theme-shell :where([class*="text-zinc-400"], [class*="text-zinc-500"], [class*="text-zinc-600"]) {
-  color: var(--ak-color-muted);
-}
-
-html[data-theme="light"] .ak-theme-shell :where([class*="text-amber-"], [class*="border-amber-"], [class*="bg-amber-"]) {
+html[data-theme="light"] .ak-theme-shell :where([class*="border-amber-"], [class*="bg-amber-"]) {
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
-  color: var(--ak-color-accent);
   border-color: var(--ak-color-accent);
-}
-
-html[data-theme="light"] .ak-theme-shell :where([class*="text-cyan-"]) {
-  color: var(--ak-color-signal);
 }
 
 html[data-theme="light"] .ak-hero-grid {
@@ -882,6 +970,13 @@ html[data-theme="light"] .ak-hero-portrait {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ak-action:hover,
+  .ak-cta:hover,
+  .ak-surface-card:hover,
+  .ak-theme-toggle:hover {
+    transform: none;
+  }
+
   .ak-system-map,
   .ak-system-node,
   .ak-system-pipeline-pulse,

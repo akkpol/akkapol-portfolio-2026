@@ -80,6 +80,16 @@ Use semantic type classes instead of raw Tailwind text sizes on the homepage.
 
 The `/cv` route may keep its own print-oriented typography until a dedicated CV theme pass is planned.
 
+Use semantic color roles instead of coupling text to a color-mode-specific Tailwind class.
+
+- `ak-text-primary`: main headings and high-emphasis foreground.
+- `ak-text-body`: standard readable copy.
+- `ak-text-muted`: supporting copy and metadata.
+- `ak-text-subtle`: low-emphasis decorative information.
+- `ak-text-accent`: primary amber signal.
+- `ak-text-accent-soft`: softer amber emphasis.
+- `ak-text-signal`: cyan system-flow signal.
+
 ## Layout Primitives
 
 Use the shared primitives in `app/_components/system-primitives.tsx` before creating new local section markup.
@@ -87,6 +97,7 @@ Use the shared primitives in `app/_components/system-primitives.tsx` before crea
 - `SectionHeading`: section eyebrow and title hierarchy.
 - `Surface`: compact, roomy, and card panels.
 - `ContactRow`: contact/action rows with consistent hover behavior.
+- `SystemAction`: token-backed primary and secondary button/link actions.
 
 Use CSS classes for repeated visual rules:
 
@@ -97,6 +108,7 @@ Use CSS classes for repeated visual rules:
 - `ak-surface-card`: repeated card items with premium hover lift.
 - `ak-contact-row`: contact rows and secondary action rows.
 - `ak-signal-icon`: accent icon container.
+- `ak-action`, `ak-action-primary`, `ak-action-secondary`: general page actions.
 - `ak-cta`, `ak-cta-primary`, `ak-cta-secondary`: hero CTA contract.
 
 ## Hero Composition Rules
@@ -148,7 +160,10 @@ Before merging a theme-system change:
 - CTA layout does not overlap the portrait or system map.
 - Repeated panels use `Surface` or `ak-surface` classes.
 - New homepage headings use semantic type classes.
+- Homepage text colors use semantic `ak-text-*` roles.
+- Repeated page actions use `SystemAction` or the `ak-action-*` contract.
 - New reusable styles use tokens instead of raw colors or shadows.
+- Hover transforms stop under reduced-motion preferences.
 - `/cv` print readability is not regressed.
 
 ## Current Non-Goals

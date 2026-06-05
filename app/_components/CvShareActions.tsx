@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
+import { SystemAction } from "@/app/_components/system-primitives";
 import { cvFiles } from "@/app/_data/cv";
 
-type Variant = "hero" | "contact";
 type CopyStatus = "idle" | "copied" | "error";
 
 const iconClassName = "h-4 w-4 shrink-0";
@@ -47,21 +47,6 @@ function ActionIcon({ name }: { name: "copy" | "download" | "view" }) {
   );
 }
 
-function getActionClassName(variant: Variant, intent: "primary" | "secondary") {
-  const base =
-    "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-amber-200/70 focus:ring-offset-2 focus:ring-offset-black";
-
-  if (intent === "primary") {
-    return `${base} bg-white text-zinc-950 hover:bg-amber-200`;
-  }
-
-  if (variant === "contact") {
-    return `${base} border border-white/10 bg-black/25 text-white hover:bg-black/40`;
-  }
-
-  return `${base} border border-white/10 bg-white/[0.04] text-white backdrop-blur hover:bg-white/[0.08]`;
-}
-
 async function copyText(text: string) {
   if (navigator.clipboard?.writeText) {
     await navigator.clipboard.writeText(text);
@@ -86,10 +71,8 @@ async function copyText(text: string) {
 
 export function CvShareActions({
   markdown,
-  variant = "hero",
 }: {
   markdown: string;
-  variant?: Variant;
 }) {
   const [copyStatus, setCopyStatus] = React.useState<CopyStatus>("idle");
 
@@ -113,35 +96,32 @@ export function CvShareActions({
 
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-      <button
-        type="button"
+      <SystemAction
         onClick={handleCopy}
-        className={getActionClassName(variant, "primary")}
+        intent="primary"
         aria-live="polite"
       >
         <ActionIcon name="copy" />
         {copyLabel}
-      </button>
-      <a
+      </SystemAction>
+      <SystemAction
         href={cvFiles.pdf}
         download
-        className={getActionClassName(variant, "secondary")}
       >
         <ActionIcon name="download" />
         Download PDF
-      </a>
-      <a
+      </SystemAction>
+      <SystemAction
         href={cvFiles.markdown}
         download
-        className={getActionClassName(variant, "secondary")}
       >
         <ActionIcon name="download" />
         Download CV.md
-      </a>
-      <a href={cvFiles.view} className={getActionClassName(variant, "secondary")}>
+      </SystemAction>
+      <SystemAction href={cvFiles.view}>
         <ActionIcon name="view" />
         View CV
-      </a>
+      </SystemAction>
     </div>
   );
 }
