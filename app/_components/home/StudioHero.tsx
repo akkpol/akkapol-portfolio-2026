@@ -51,7 +51,7 @@ function HeroSystemMap() {
     >
       <svg
         viewBox="0 0 820 760"
-        className="ak-text-accent absolute right-0 top-20 z-0 h-[74%] w-full opacity-[0.35]"
+        className="ak-text-accent absolute right-0 top-20 z-0 h-[74%] w-full opacity-[0.46]"
         fill="none"
       >
         <defs>
@@ -66,11 +66,13 @@ function HeroSystemMap() {
             <stop offset="1" stopColor="#8bd8dc" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="tracePulse" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stopColor="#8bd8dc" stopOpacity="0" />
-            <stop offset="0.28" stopColor="#8bd8dc" stopOpacity="0.78" />
-            <stop offset="0.56" stopColor="#f6b51e" stopOpacity="0.82" />
-            <stop offset="0.74" stopColor="#fff7d6" stopOpacity="0.62" />
-            <stop offset="1" stopColor="#f6b51e" stopOpacity="0" />
+            <stop offset="0" stopColor="#0f5dff" stopOpacity="0" />
+            <stop offset="0.16" stopColor="#0f5dff" stopOpacity="0.42" />
+            <stop offset="0.34" stopColor="#29d8ff" stopOpacity="0.98" />
+            <stop offset="0.5" stopColor="#c8fbff" stopOpacity="1" />
+            <stop offset="0.64" stopColor="#ffe15c" stopOpacity="0.98" />
+            <stop offset="0.78" stopColor="#ffbb1c" stopOpacity="0.82" />
+            <stop offset="1" stopColor="#ffbb1c" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path
